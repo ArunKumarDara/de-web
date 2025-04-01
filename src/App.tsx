@@ -18,25 +18,32 @@ const App = () => {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 cursor-pointer"
           >
-            <span className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center">
-              <span className="text-white font-bold text-sm">DE</span>
-            </span>
-            <span className="font-bold text-lg">Dine-Express</span>
+            <ScrollLink to="hero"
+              smooth={true}
+              duration={500}
+              offset={-100}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <span className="w-8 h-8 rounded-full bg-amber-500 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">DE</span>
+              </span>
+              <span className="font-bold text-lg">DineExpress</span>
+            </ScrollLink>
           </motion.div>
 
           <NavigationMenu>
             <NavigationMenuList className="gap-6">
               <NavigationMenuItem>
                 <ScrollLink
-                  to="how-it-works"
+                  to="products"
                   smooth={true}
                   duration={500}
                   offset={-100}
                   className="text-sm font-medium hover:text-amber-600 transition-colors cursor-pointer"
                 >
-                  How It Works
+                  Products
                 </ScrollLink>
               </NavigationMenuItem>
               <NavigationMenuItem>
@@ -52,15 +59,17 @@ const App = () => {
               </NavigationMenuItem>
               <NavigationMenuItem>
                 <ScrollLink
-                  to="products"
+                  to="how-it-works"
                   smooth={true}
                   duration={500}
                   offset={-100}
                   className="text-sm font-medium hover:text-amber-600 transition-colors cursor-pointer"
                 >
-                  Products
+                  How It Works
                 </ScrollLink>
               </NavigationMenuItem>
+
+
               <NavigationMenuItem>
                 <ScrollLink
                   to="testimonials"
@@ -88,7 +97,7 @@ const App = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="py-20 px-4">
+      <section className="py-20 px-4" id="hero">
         <div className="container flex flex-col md:flex-row items-center gap-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -184,147 +193,6 @@ const App = () => {
         </div>
       </section>
 
-      {/* How It Works Section */}
-      <section id="how-it-works" className="py-20 px-4 bg-white">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 mb-4">
-              Simple Process
-            </Badge>
-            <h2 className="text-3xl font-bold mb-4">How Dine-Express Works</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Get your groceries and meals in just a few clicks
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                step: "1",
-                title: "Choose Your Store",
-                description: "Browse local grocery stores, bakeries, and restaurants in your area.",
-                icon: (
-                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                  </svg>
-                )
-              },
-              {
-                step: "2",
-                title: "Add Items to Cart",
-                description: "Select your favorite products and add them to your cart.",
-                icon: (
-                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
-                )
-              },
-              {
-                step: "3",
-                title: "Fast Delivery",
-                description: "Checkout and get your order delivered to your doorstep in minutes.",
-                icon: (
-                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                )
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <Card className="h-full text-center hover:shadow-lg transition-shadow">
-                  <CardHeader className="items-center">
-                    <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-4 mx-auto">
-                      {step.icon}
-                    </div>
-                    <div className="space-y-2">
-                      <span className="text-sm font-medium text-amber-600">Step {step.step}</span>
-                      <CardTitle>{step.title}</CardTitle>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{step.description}</p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
-      <section id="features" className="py-20 px-4 bg-amber-50">
-        <div className="container">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 mb-4">
-              Why Choose Us
-            </Badge>
-            <h2 className="text-3xl font-bold mb-4">The Dine-Express Difference</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We're revolutionizing the way you shop for groceries and daily essentials.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              {
-                title: "No App Required",
-                description: "Full functionality directly from your browser",
-                icon: "🌐"
-              },
-              {
-                title: "Wide Selection",
-                description: "Hundreds of local stores at your fingertips",
-                icon: "🛒"
-              },
-              {
-                title: "Fast Checkout",
-                description: "Save your details for quicker future orders",
-                icon: "⚡"
-              },
-              {
-                title: "Real-Time Tracking",
-                description: "Watch your order from store to doorstep",
-                icon: "📍"
-              }
-            ].map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -5 }}
-              >
-                <Card className="h-full text-center p-6">
-                  <span className="text-3xl mb-4">{feature.icon}</span>
-                  <CardTitle className="mb-2">{feature.title}</CardTitle>
-                  <CardDescription>{feature.description}</CardDescription>
-                </Card>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Products Section */}
       <section id="products" className="py-20 px-4 bg-white">
         <div className="container">
           <motion.div
@@ -405,6 +273,150 @@ const App = () => {
           </div>
         </div>
       </section>
+
+      {/* Features Section */}
+      <section id="features" className="py-20 px-4 bg-amber-50">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 mb-4">
+              Why Choose Us
+            </Badge>
+            <h2 className="text-3xl font-bold mb-4">The Dine-Express Difference</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              We're revolutionizing the way you shop for groceries and daily essentials.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                title: "No App Required",
+                description: "Full functionality directly from your browser",
+                icon: "🌐"
+              },
+              {
+                title: "Wide Selection",
+                description: "Hundreds of local stores at your fingertips",
+                icon: "🛒"
+              },
+              {
+                title: "Fast Checkout",
+                description: "Save your details for quicker future orders",
+                icon: "⚡"
+              },
+              {
+                title: "Real-Time Tracking",
+                description: "Watch your order from store to doorstep",
+                icon: "📍"
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -5 }}
+              >
+                <Card className="h-full text-center p-6">
+                  <span className="text-3xl mb-4">{feature.icon}</span>
+                  <CardTitle className="mb-2">{feature.title}</CardTitle>
+                  <CardDescription>{feature.description}</CardDescription>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 bg-white">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <Badge variant="outline" className="bg-amber-100 text-amber-800 border-amber-200 mb-4">
+              Simple Process
+            </Badge>
+            <h2 className="text-3xl font-bold mb-4">How Dine-Express Works</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Get your groceries and meals in just a few clicks
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                step: "1",
+                title: "Choose Your Store",
+                description: "Browse local grocery stores, bakeries, and restaurants in your area.",
+                icon: (
+                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                  </svg>
+                )
+              },
+              {
+                step: "2",
+                title: "Add Items to Cart",
+                description: "Select your favorite products and add them to your cart.",
+                icon: (
+                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                )
+              },
+              {
+                step: "3",
+                title: "Fast Delivery",
+                description: "Checkout and get your order delivered to your doorstep in minutes.",
+                icon: (
+                  <svg className="w-8 h-8 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                  </svg>
+                )
+              }
+            ].map((step, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+              >
+                <Card className="h-full text-center hover:shadow-lg transition-shadow">
+                  <CardHeader className="items-center">
+                    <div className="w-14 h-14 rounded-full bg-amber-100 flex items-center justify-center mb-4 mx-auto">
+                      {step.icon}
+                    </div>
+                    <div className="space-y-2">
+                      <span className="text-sm font-medium text-amber-600">Step {step.step}</span>
+                      <CardTitle>{step.title}</CardTitle>
+                    </div>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-muted-foreground">{step.description}</p>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
+      {/* Products Section */}
+
 
       {/* Testimonials Section */}
       <section id="testimonials" className="py-20 px-4 bg-amber-50">
@@ -567,25 +579,25 @@ const App = () => {
                 <span className="font-bold text-lg">Dine-Express</span>
               </div>
               <p className="text-gray-400">
-                Fresh groceries, bakery items, and meals delivered to your doorstep in minutes.
+                Delivering happiness to your doorstep. Experience the best food delivery service in your city.
               </p>
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  // href="#"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram className="w-5 h-5" />
                 </a>
                 <a
-                  href="#"
+                  // href="#"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook className="w-5 h-5" />
                 </a>
                 <a
-                  href="#"
+                  // href="#"
                   className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-amber-600 transition-colors"
                   aria-label="LinkedIn"
                 >
